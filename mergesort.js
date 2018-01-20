@@ -1,14 +1,11 @@
 a = [4, 6, 2, 7, 10, 13, 1];
 b = [5, 1];
 
-function split(arr) {
-    if (arr.length < 2) {
-        return arr;
-    } 
+function split(arr) { 
     var left = arr.slice(0, Math.floor(arr.length / 2));
     var right = arr.slice(Math.floor(arr.length / 2));
-  }            
-
+    return [left, right];
+  };
 
 // compares 2 single item arrays and puts them in order.
 function merge(left, right) {
@@ -39,9 +36,8 @@ function merge(left, right) {
 function mergeSort(arr) {
     if (arr.length < 2) {
         return arr;
-    } else {
-    var left = arr.slice(0, Math.floor(arr.length / 2));
-    var right = arr.slice(Math.floor(arr.length / 2));
-    }
-  return merge(mergeSort(left), mergeSort(right));
+    } 
+  return merge(mergeSort(split(arr)[0]), mergeSort(split(arr)[1]));
 }
+
+console.log(mergeSort(a));
